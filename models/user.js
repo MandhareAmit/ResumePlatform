@@ -13,7 +13,12 @@ const userSchema = new Schema({
         unique: true
     },
     password:{
-        type:String
+        type:String,
+        required: true
+    },
+    profession:{
+        type:String,
+        required: true   
     }
 })
 
