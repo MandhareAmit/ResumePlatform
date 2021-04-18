@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 const mongoose = require('mongoose');
 const catchAsync = require('./utilis/catchAsync');
 const ExpressError = require('./utilis/ExpressError');
@@ -20,7 +21,17 @@ db.once('open', () => {
 })
 
 app.use(express.urlencoded({extended: true}));
+app.use(cors());
+app.options('*', cors());
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader('Acces-Control-Allow-Methods','GET, POST, PATCH, DELETE');
 
+
+    next();
+  });
+  
 
 //api routes
 const userRoute = require('./routes/user');
@@ -40,6 +51,17 @@ app.use((err, req, res, next) => {
     //res.send('Ohh Sorry, Something Went Wrong');
 });
  */
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('page not found', 404));
+});
+
+app.use((err, req, res, next ) => {
+    const { statusCode = 500 , message = 'Something went wrong'} = err;
+    res.status(statusCode).send(message);
+});
+
+
 //server running on port 3000
 const port = process.env.PORT || 5000;
 

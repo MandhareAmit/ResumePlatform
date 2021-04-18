@@ -28,16 +28,13 @@ const profileSchema = new Schema({
     experience:[
         {
         title:{
-            type: String,
-            required:true
+            type: String
         },
         company:{
-            type:String,
-            required: true
+            type:String
         },
         from:{
-            type: Date,
-            required: true
+            type: Date
         },
         to:{
             type: Date
@@ -64,22 +61,20 @@ const profileSchema = new Schema({
             }
         }
     ],
-    project:[
-        {
+    project:{
+        
             title:{
-                type:String,
-                required:true
+                type:String
             },
             environment:{
-                type:String,
-                required:true
+                type:String
             },
             link:{
                 type:String
             }
 
         }
-    ]
+    
 
 });
 
