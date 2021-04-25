@@ -11,15 +11,25 @@ const profileSchema = new Schema({
         type:String,
         required: true
     },
+    contact:{
+        type:String
+    },
+    age:{
+        type:String,
+        required: true
+    },
     education:[
         {
             collage:{
                 type: String
             },
+            university:{
+                type: String
+            },
             degree:{
                 type: String
             },
-            field:{
+            stream:{
                 type: String
             },
 
@@ -56,6 +66,10 @@ const profileSchema = new Schema({
                 
             },
             certificate:{
+                type: String,
+
+            },
+            description:{
                 type: String,
 
             }

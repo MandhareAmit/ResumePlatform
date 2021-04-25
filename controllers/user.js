@@ -9,12 +9,12 @@ module.exports.first = (req, res) => {
     res.send('ok');
 }
 //render to register page
-module.exports.getRegister = (req, res, next) =>{
+module.exports.getRegister = (req, res) =>{
     res.send('register Page');
 }
 
 //register user
-module.exports.Register = async (req, res, next) => {
+module.exports.Register = async(req, res, next) => {
     const user = new User(req.body);
     await user.save();
     res.send(req.body);
